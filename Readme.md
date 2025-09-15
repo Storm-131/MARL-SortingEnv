@@ -67,12 +67,6 @@ For details on observation and action spaces, see [docs/Component_Reference.md].
 │   └── ...
 ├── log/
 │   └── ...
-├── scripts/
-│   ├── check_seeds_Benchmark.py
-│   ├── model_comparison_plot.py
-│   ├── plotting_test.py
-│   ├── press_reward_plot.py
-│   └── seed_checker.py
 ├── src/
 │   ├── envs_train/
 │   │   ├── env_super.py        --> Base class for the environments.
