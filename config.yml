@@ -1,0 +1,59 @@
+# Configuration for the MARL Smart Factory Simulation
+
+# --- General Simulation Parameters ---
+simulation:
+  input_occupancy_min: 60
+  input_occupancy_max: 80
+  input_batch_size: 100
+  steps_per_pattern: 20
+  input_history_length: 10
+
+# --- Sorting Station Parameters ---
+sorting_station:
+  baseline_accuracy: [0.75, 0.75, 0.75, 0.75] # Base accuracy for materials A, B, C, D
+  boost: 0.5                             # Accuracy boost for targeted materials
+  # Penalty to accuracy based on belt occupancy. Formula: ((occupancy/100)^2) * factor
+  occupancy_reduction_factor: 0.2
+  noise: 0.05
+  stage_capacity: 100
+
+# --- Pressing Station & Container Parameters ---
+pressing_station:
+  press_times:
+    1: 12  # Timesteps for press 1 to complete a job
+    2: 15  # Timesteps for press 2 to complete a job
+  container_capacity: 700                # Max capacity for all containers
+  bale_standard_size: 200
+  bale_remainder_threshold: 0.5
+  bale_quality_thresholds:
+    A: 0.9 # Minimum purity for a bale to be considered high quality
+    B: 0.9
+    C: 0.9
+    D: 0.9
+
+# --- Reward Function Parameters ---
+rewards:
+  # Sorting reward is based on purity deviation from quality_thresholds
+  sorting:
+    # Parameters for asymmetric potential-based reward shaping
+    purity_threshold_theta: 0.80
+    decay_steepness_k: 170.0
+    min_weight: 0.1
+    reward_scaling_factor: 2.0
+    # Penalty for changing the sorting mode too frequently
+    sorting_mode_change_penalty: -0.1
+    tanh_temperature: 0.5
+
+  # Pressing reward is based on container levels and bale efficiency
+  pressing:
+    # State-based penalties for near-overflow conditions
+    overflow_penalty_catastrophic: -1.0 # fill_ratio > 1.0
+    overflow_penalty_severe: -0.5       # fill_ratio > 0.95
+    overflow_penalty_mild: -0.2         # fill_ratio > 0.90
+    # Action-based rewards for bale efficiency
+    bale_efficiency_factor: 1  # Scales the triangular wave reward
+    full_bale_bonus: 0.1         # Bonus for each full bale produced
+    max_state_reward: 0.5        # Max reward from state-based penalties
+
+  # Penalty applied when an episode is terminated due to overflow
+  overflow_termination_penalty: -10.0
