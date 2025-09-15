@@ -1,6 +1,5 @@
-# Optimizing Autonomous Decision-Making in Smart Factories:  
-
-## A Multi-Agent Reinforcement Learning Approach
+# Balancing Specialization and Centralization
+## A Multi-Agent Reinforcement Learning Benchmark for Sequential Industrial Control
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-390/)  
 [![Code Style: Autopep](https://img.shields.io/badge/code%20style-autopep8-lightgrey)](https://pypi.org/project/autopep8/)  
