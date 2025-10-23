@@ -129,3 +129,9 @@ This repository is based on the following research paper:
 > Maus, T., Atamna, A., & Glasmachers, T. (2025). Balancing Specialization and Centralization: A Multi-Agent Reinforcement Learning Benchmark for Sequential Industrial Control.
 
 ---
+
+## Contact 📬
+
+For questions or feedback, feel free to [reach out to me](https://www.ini.rub.de/the_institute/people/tom-maus/).
+
+---
