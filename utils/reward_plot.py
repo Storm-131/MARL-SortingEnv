@@ -156,7 +156,8 @@ def main():
     # Finalize and save the entire figure
     # fig.suptitle('Analysis of Agent Reward Functions', fontsize=scaled(24), fontweight='bold')
     fig.tight_layout(rect=[0, 0.03, 1, 0.95])
-    plt.savefig("./img/reward_functions_analysis_refactored.png", dpi=300, bbox_inches='tight')
+    plt.savefig("../img/reward_functions_analysis_refactored.png", dpi=300, bbox_inches='tight')
+    plt.savefig("../img/reward_functions_analysis_refactored.svg")
     plt.show()
 
 
