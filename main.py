@@ -28,8 +28,8 @@ from datetime import datetime
 TAG = f"Gold_{datetime.now().strftime('%d-%m-%Y_%H-%M')}"
 
 ENV_ANALYSIS = 1     # Analyze the Environment
-TRAIN_AND_BENCHMARK = 1  # Train and Benchmark all agents sequentially WITH action masking
-TRAIN_WITHOUT_MASKING = 1  # Same as above, but WITHOUT action masking
+TRAIN_AND_BENCHMARK = 0  # Train and Benchmark all agents sequentially WITH action masking
+TRAIN_WITHOUT_MASKING = 0  # Same as above, but WITHOUT action masking
 
 SIMULATION = 0       # For Simulation Mode (Interactive)
 VIDEO = 0            # Record Video, for Test and Load Mode
@@ -89,19 +89,19 @@ def run_sim(
         print(f"\n--- Running Environment Analysis ({ENV}) ---")
         
         print("\n--- Running Environment Analysis (Masked Actions) ---")
-        test_env(env=env, tag=TAG, save=SAVE,
+        test_env(env=env, tag=TAG+"_masked_random", save=SAVE,
                  title=f"(Random Run - Masking)", steps=STEPS_TEST, dir=DIR, seed=SEED, mode="random")
         env.reset(seed=SEED)
-        test_env(env=env, tag=TAG, save=SAVE, mode="rule_based",
+        test_env(env=env, tag=TAG+"_masked_rule_based", save=SAVE, mode="rule_based",
                  title=f"(Rule Based Agent - Masking)", steps=STEPS_TEST, dir=DIR, seed=SEED)
         
         print("\n--- Running Environment Analysis (No Masking) ---")
         env.reset(seed=SEED)
-        test_env(env=env, tag=TAG, save=SAVE,
+        test_env(env=env, tag=TAG+"_unmasked_random", save=SAVE,
                  title=f"(Random Run - No Masking)", steps=STEPS_TEST, dir=DIR, seed=SEED, mode="random",
                  use_action_masking=False)
         env.reset(seed=SEED)
-        test_env(env=env, tag=TAG, save=SAVE, mode="rule_based",
+        test_env(env=env, tag=TAG+"_unmasked_rule_based", save=SAVE, mode="rule_based",
                  title=f"(Rule Based Agent - No Masking)", steps=STEPS_TEST, dir=DIR, seed=SEED, use_action_masking=False)
 
     if TRAIN_AND_BENCHMARK:
